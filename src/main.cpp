@@ -1,4 +1,13 @@
 #include "cli/minesweeper-cli.hpp"
 #include <iostream>
 
-int main() { std::cout << "hello world\n"; }
+int main(int argc, char **argv) {
+  // Introduce program
+
+   
+
+    MinesweeperCli cli;
+    cli.run();
+    
+  
+}

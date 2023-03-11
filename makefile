@@ -1,6 +1,10 @@
 all:
+	cd build && make
+
+setup:
 	mkdir -p build
-	cd build && cmake ../ && make
+	cd build && cmake ../
+
 
 clean:
 	rm -rf build
