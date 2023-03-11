@@ -1,0 +1,10 @@
+# CLI lib
+add_library(
+    minesweeper-cli-lib 
+    minesweeper-cli.cpp
+)
+    
+target_link_libraries(
+    minesweeper-cli-lib
+    minesweeper-lib
+)

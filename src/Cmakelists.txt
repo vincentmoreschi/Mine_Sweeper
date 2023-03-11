@@ -1,0 +1,13 @@
+add_subdirectory(base)
+add_subdirectory(cli)
+
+# app
+add_executable(
+    minesweeper
+    main.cpp
+)
+
+target_link_libraries(
+    minesweeper
+    minesweeper-cli-lib
+)

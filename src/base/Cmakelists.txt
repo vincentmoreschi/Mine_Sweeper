@@ -1,0 +1,6 @@
+# library for GUI independent implementation
+add_library(
+    minesweeper-lib 
+    minesweeper.cpp
+    cell.cpp
+)
