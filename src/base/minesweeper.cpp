@@ -1,15 +1,22 @@
 #include "minesweeper.hpp"
+#include "board.hpp"
 
-Minesweeper::Minesweeper() {}
+Minesweeper::Minesweeper() {
+    std::cout << "-> Minesweeper::" << __func__ << "()\n";
+}
 
-Minesweeper::~Minesweeper() {}
+Minesweeper::~Minesweeper() {
+    std::cout << "-> Minesweeper::" << __func__ << "()\n";
+}
 
 void Minesweeper::run() {
-    Coordinate user_selection;
-    get_board_dimension();
+    std::cout << "-> Minesweeper::" << __func__ << "()\n";
+
+    board_dimension_ = get_board_dimension();
     init_board();
-    init_board_display();
+    // init_board_display();
     
+    is_active_ = true;
     while(is_active_)
     {
         if (exit_condition()) {
@@ -17,19 +24,26 @@ void Minesweeper::run() {
             break;
         }
         display();
-        user_selection = get_user_selection();
+        Coordinate user_selection = get_user_selection();
         update_board_state(user_selection);
     }
 }
 
-std::vector<Cell> Minesweeper::get_current_board_state(){
+std::shared_ptr<Board> Minesweeper::get_current_board_state(){
+    std::cout << "-> Minesweeper::" << __func__ << "()\n";
     return board_;
 }
 
 void Minesweeper::kill() {
+    std::cout << "-> Minesweeper::" << __func__ << "()\n";
     is_active_ = false;
 }
 
-void Minesweeper::update_board_state(const Coordinate &user_selection) {}
+void Minesweeper::update_board_state(const Coordinate &user_selection) {
+    std::cout << "-> Minesweeper::" << __func__ << "()\n";
+}
 
-void Minesweeper::init_board() {}
+void Minesweeper::init_board() {
+    std::cout << "-> Minesweeper::" << __func__ << "()\n";
+    board_ = std::make_shared<Board>(mines_,board_dimension_);
+}

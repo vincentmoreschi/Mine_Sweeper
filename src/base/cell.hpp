@@ -4,8 +4,9 @@
 #include <string>
 
 struct Coordinate {
-  int x;
-  int y;
+  Coordinate(int x_val, int y_val) : x(x_val), y(y_val){};
+  const int x;
+  const int y;
 };
 
 class Cell {
@@ -23,13 +24,25 @@ public:
 
   State get_state() { return state_; }
 
-  std::string to_string();  
+  std::string to_string(){
+    if(state_ == State::HIDDEN){
+      return "X";
+    }else if(state_ == State::REVEALED){
+      if(is_mine_){
+        return "O"; 
+      }else{
+        return "-";
+      }
+    }
 
+  } 
 private:
   const bool is_mine_;
+  
   const Coordinate coordinate_;
   int adjacent_mines_ = -1;
   State state_ = State::HIDDEN;
 };
+
 
 #endif
