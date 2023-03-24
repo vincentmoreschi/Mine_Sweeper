@@ -18,7 +18,7 @@ int MinesweeperCli::get_board_dimension(){
 }
 
 std::vector<std::vector<std::string>> MinesweeperCli::init_board_display(){
-    std::cout << "-> MinesweeperCli::" << __func__ << "()\n";
+    // std::cout << "-> MinesweeperCli::" << __func__ << "()\n";
     
     // Board * board =  get_current_board_state();
     // for(int row = 0; row < board->get_size(); row++){
@@ -37,7 +37,7 @@ void MinesweeperCli::display(){
     for(int row = 0; row < board->get_size(); row++){
         for(int col = 0; col < board->get_size(); col++){
             // auto cell = board->get_cell(Coordinate(row,col));
-            std::cout << board->get_cell(Coordinate(row,col))->to_string();
+            std::cout << board->get_cell(Coordinate(row,col))->to_string() + " ";
         }
         std::cout << "\n";
     }
@@ -48,13 +48,13 @@ bool MinesweeperCli::exit_condition(){
 // read stdin for user input return -1,-1 if input is invalid
 Coordinate MinesweeperCli::get_user_selection(){
     std::cout << "-> MinesweeperCli::" << __func__ << "()\n";
-    char*  input;
-    Coordinate coord1(-1,-1);
-    std::cout <<  "Please enter a coordinate to reveal with the format of x y ex. 5 5 would be reveal (5,5) on the board\n";
+    std::string input;
+    Coordinate error_coord(-1,-1);
+    std::cout <<  "Please enter a coordinate to reveal with the format of x,y ex. 5,5 would be reveal (5,5) on the board\n";
     std::cin >> input;
     if(input =="q"){
         quit_ = true;
-        return coord1;
+        return error_coord;
     }
     Coordinate coord((int)input[0],(int)input[2]);
     return coord;
