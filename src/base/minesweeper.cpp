@@ -1,6 +1,7 @@
 #include "minesweeper.hpp"
 #include "board.hpp"
 
+
 Minesweeper::Minesweeper() {
     // std::cout << "-> Minesweeper::" << __func__ << "()\n";
 }
@@ -19,12 +20,13 @@ void Minesweeper::run() {
     is_active_ = true;
     while(is_active_)
     {
+        display();
+        Coordinate user_selection = get_user_selection();
         if (exit_condition()) {
             kill();
             break;
         }
-        display();
-        Coordinate user_selection = get_user_selection();
+
         update_board_state(user_selection);
     }
 }
@@ -41,6 +43,10 @@ void Minesweeper::kill() {
 
 void Minesweeper::update_board_state(const Coordinate &user_selection) {
     std::cout << "-> Minesweeper::" << __func__ << "()\n";
+    Cell * check_cell = board_->get_cell(user_selection);
+
+    check_cell->reveal();
+
 }
 
 void Minesweeper::init_board() {

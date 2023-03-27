@@ -1,3 +1,4 @@
+CFLAGS= -g -Wall -Wextra
 all:
 	cd build && make
 

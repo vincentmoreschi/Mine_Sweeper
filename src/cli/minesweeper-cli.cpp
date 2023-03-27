@@ -56,7 +56,9 @@ Coordinate MinesweeperCli::get_user_selection(){
         quit_ = true;
         return error_coord;
     }
-    Coordinate coord((int)input[0],(int)input[2]);
+    Coordinate coord(((int)input[0]) - 48,((int)input[2]) - 48);
+    // std::cout << coord.x;
+    // std::cout << coord.y;
     return coord;
 
 }

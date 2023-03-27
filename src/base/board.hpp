@@ -26,7 +26,7 @@ public:
                         is_mine= true;
                     }
                 }
-                Cell cell1 = Cell(is_mine, Coordinate(row, col));
+                Cell init_cell = Cell(is_mine, Coordinate(row, col));
                 // create each cell in that row
                 contents_.back().push_back(Cell(is_mine, Coordinate(row, col)));
                 // std::cout << cell1.to_string() + " ";
