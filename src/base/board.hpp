@@ -10,8 +10,7 @@ class Board {
 public:
     Board(int dimension, int num_mines) : dimension_(dimension), num_mines_(num_mines)
     {
-        // initialize all the mines
-        bool is_mine = false;
+        
         for (int row = 0; row < dimension; row++)
         {
 
@@ -19,9 +18,12 @@ public:
             contents_.emplace_back();
             for (int col = 0; col < dimension; col++)
             {
+                // initialize all the mines
+
+                bool is_mine = false;
                 if (num_mines > 0){
                     int rand = std::rand() % 5 + 1;
-                    if(rand == 3){
+                    if(rand == 2){
                         num_mines--;
                         is_mine= true;
                     }
@@ -33,12 +35,41 @@ public:
             }
             // std::cout << "\n";
         }
+        // for(int row = 0; row < dimension; row++){
 
+        //     for(int col = 0; col < dimension; col++ ){
+        //         Cell * check_cell = get_cell(Coordinate(row,col));
+        //         // check for mine
+        //         // if a mine is found start updating adjacent number
+        //         if(check_cell->is_mine()){
+        //             for(int i = 4; i > 0 ; i--){
+        //                 //down
+        //                 Cell * check_cell = get_cell(Coordinate(row-1,col));
+        //                 check_cell->update_adjacent_number(i);
+
+        //                 Cell * check_cell = get_cell(Coordinate(row,col-1));
+        //                 check_cell->update_adjacent_number(i);
+
+        //                 Cell * check_cell = get_cell(Coordinate(row+1,col));
+        //                 check_cell->update_adjacent_number(i);
+                                                
+        //                 Cell * check_cell = get_cell(Coordinate(row,col));
+        //                 check_cell->update_adjacent_number(i);
+        //             }
+        //         }
+        //     }
+        // }
         // update adjacent count for adjacent mines HORIZONTALLY
 
         // update adjacent count for adjacent mines VERTICALLY
     }
+    void fill_adjacent(int row, int col, int num){
+        //base case
+        if(num == 0) return;
 
+
+
+    }
     Cell* get_cell(Coordinate coordinate)
     {
         return &contents_[coordinate.x][coordinate.y];

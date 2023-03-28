@@ -43,8 +43,15 @@ void Minesweeper::kill() {
 
 void Minesweeper::update_board_state(const Coordinate &user_selection) {
     std::cout << "-> Minesweeper::" << __func__ << "()\n";
-    Cell * check_cell = board_->get_cell(user_selection);
 
+    Cell * check_cell = board_->get_cell(user_selection);
+    if(check_cell->is_mine()){
+        kill();
+        std::cout<< "You hit a mine! game over\n";
+        check_cell->reveal();
+        display();
+        
+    }
     check_cell->reveal();
 
 }

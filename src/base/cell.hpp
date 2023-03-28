@@ -1,7 +1,9 @@
 #ifndef CELL_HPP_
 #define CELL_HPP_
 
+#include <iostream>
 #include <string>
+#include <stdexcept>
 
 struct Coordinate {
   Coordinate(int x_val, int y_val) : x(x_val), y(y_val){};
@@ -31,7 +33,7 @@ public:
       if(is_mine_){
         return "O"; 
       }else{
-        return "-";
+        return std::to_string(adjacent_mines_);
       }
     }
 

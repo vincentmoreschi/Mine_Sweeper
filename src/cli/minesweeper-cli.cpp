@@ -50,6 +50,8 @@ void MinesweeperCli::display(){
         std::cout << i;
         std::cout << " ";
     }
+    std::cout << " ";
+    std::cout << "y";
     std::cout << "\n";
     for(int row = 0; row < board->get_size(); row++){
         std::cout << row;
@@ -63,6 +65,7 @@ void MinesweeperCli::display(){
 
        
     }
+    std::cout << "x\n";
 }
 bool MinesweeperCli::exit_condition(){
     return quit_;
@@ -73,26 +76,52 @@ Coordinate MinesweeperCli::get_user_selection(){
     std::string input;
     Coordinate error_coord(-1,-1);
     std::cout <<  "Please enter a coordinate to reveal a square, you can type 'q' at anytime to quit\nPlease enter the X coord \n";
-    int x,y;
+    int x,y = 0;
+    auto board = get_current_board_state();
+   
     getline(std::cin,input);
-    if(input =="q"){
-        quit_ = true;
-        return error_coord;
+
+    while(true){
+        if(input =="q"){
+            quit_ = true;
+            return error_coord;
+        }
+        if (tryParse(input,x)){
+            if(x < 0 || x > board->get_size()){
+                std::cout << "Number outside of range\n";
+                getline(std::cin,input);
+            }else{
+                break;
+            }
+        }else{
+            std::cout << "Please enter a number\n";
+            getline(std::cin,input);
+        }
     }
-    if(!tryParse(input,x)){
-        std::cout << "Please enter a number\n";
-        return error_coord;
-    }
-    std::cout << "Please enter the y coord\n";
+
+    std::cout << "Please enter the Y coord\n";
     getline(std::cin,input);
-    if(input =="q"){
-        quit_ = true;
-        return error_coord;
+
+    while(true){
+        if(input =="q"){
+            quit_ = true;
+            return error_coord;
+        }
+        if (tryParse(input,y)){
+            if(y < 0 || y > board->get_size()){
+                std::cout << "Number outside of range\n";
+                getline(std::cin,input);
+            }else{
+                break;
+            }
+            
+        }else{
+            std::cout << "Please enter a number\n";
+            getline(std::cin,input);
+        }
+        
     }
-    if(!tryParse(input,y)){
-        std::cout << "Please enter a number\n";
-        return error_coord;
-    }
+    
     Coordinate coord(x,y);
     // std::cout << coord.x;
     // std::cout << coord.y;
