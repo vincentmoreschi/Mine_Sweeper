@@ -11,7 +11,7 @@ class MinesweeperCli : public Minesweeper {
     void display();
     bool exit_condition();
     Coordinate get_user_selection();
- 
+    bool tryParse(std::string& input, int& output);
 };
 
 #endif
